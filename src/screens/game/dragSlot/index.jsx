@@ -60,7 +60,7 @@ function DraggableArtwork({ artwork }) {
       document.removeEventListener("touchend", stopScrolling);
       document.removeEventListener("mouseup", stopScrolling);
     };
-  }, [isDragging]);
+  }, [isDragging, artwork.title]);
 
   console.log("🔍 Arte:", artwork.title, "Descrição:", artwork.description);
   return (
