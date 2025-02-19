@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { DndContext, closestCorners, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, rectIntersection, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import DraggableArtwork from "./dragSlot/index.jsx";
 import DroppableSlot from "./dropSlot/index.jsx";
-import getThemes from "../../data/index"; // Importa os temas
+import getThemes from "../../data/index"; 
 import Scoreboard from "./scoreboard/index.jsx";
 import "./styles.css";
 
@@ -34,16 +34,10 @@ function Game({ players, selectedTheme, onRestartGame }) {
     }
 
     const artworksData = selectedThemeData.data || [];
-
-    // Ordena a régua corretamente (por ID)
     const orderedArtworks = [...artworksData].sort((a, b) => a.id - b.id);
     setSortedArtworks(orderedArtworks);
-
-    // Embaralha as obras para a área de arrasto
     const shuffledArtworks = [...artworksData].sort(() => Math.random() - 0.5);
     setArtworks(shuffledArtworks);
-
-    // Reseta a timeline
     setTimeline(new Array(artworksData.length).fill(null));
     setGameOver(false);
     setWinners([]);
@@ -83,7 +77,7 @@ function Game({ players, selectedTheme, onRestartGame }) {
       const newTimeline = [...timeline];
       newTimeline[timelineSlotIndex] = {
         image: artwork.image,
-        description: artwork.description, // Mantém apenas descrição
+        description: artwork.description,
         correct: true,
       };
       setTimeline(newTimeline);
@@ -98,21 +92,17 @@ function Game({ players, selectedTheme, onRestartGame }) {
       setCurrentPlayer((prev) => (prev + 1) % scoreboard.length);
     }
   };
-  
-  
 
-  // Função de reinício do jogo
   const resetGame = () => {
     const confirmation = window.confirm(
       "Você perderá todo o progresso do jogo. Tem certeza que deseja reiniciar?"
     );
     if (confirmation) {
-      onRestartGame(); // Chama a função passada como prop
+      onRestartGame(); 
       initializeGame();
     }
   };
 
-  // Usando sensores de mouse e toque
   const mouseSensor = useSensor(MouseSensor);
   const touchSensor = useSensor(TouchSensor);
   const sensors = useSensors(mouseSensor, touchSensor);
@@ -126,7 +116,7 @@ function Game({ players, selectedTheme, onRestartGame }) {
         <h1 className="game-title">Organize os Eventos na Ordem Certa</h1>
         <Scoreboard players={scoreboard} currentPlayer={currentPlayer} />
       </header>
-  
+
       {gameOver ? (
         <div className="winner-modal">
           <h2>🎉 Fim de jogo! 🎉</h2>
@@ -159,9 +149,9 @@ function Game({ players, selectedTheme, onRestartGame }) {
               {scoreboard[currentPlayer].name}
             </span>
           </p>
-  
+
           <DndContext
-            collisionDetection={closestCorners}
+            collisionDetection={rectIntersection}
             onDragEnd={handleDragEnd}
             sensors={sensors}
           >
@@ -187,6 +177,6 @@ function Game({ players, selectedTheme, onRestartGame }) {
       )}
     </div>
   );
-}  
+}
 
 export default Game;

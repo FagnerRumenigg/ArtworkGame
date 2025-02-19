@@ -1,44 +1,36 @@
 .artwork-card {
+  width: 100px;  /* Ajuste do tamanho do card */
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  overflow: hidden;  /* Garante que o conteúdo não ultrapasse os limites */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all 0.3s ease; /* Suaviza o aumento da div inteira */
 }
 
 .artwork-image-container {
   width: 100%;
-  height: 200px; /* Altura inicial */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 120px;  /* Define o tamanho fixo da imagem */
   overflow: hidden;
-  transition: all 0.3s ease; /* Suaviza o aumento da div com a imagem */
 }
 
 .artwork-image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Suaviza o aumento da imagem */
-}
-
-.artwork-card:hover .artwork-image-container {
-  height: 250px; /* Aumenta a altura da div quando passar o mouse */
-}
-
-.artwork-card:hover .artwork-image {
-  transform: scale(1.2); /* Aumenta a imagem 20% */
 }
 
 .artwork-title {
-  background-color: white;
   padding: 10px;
-  width: 100%;
   text-align: center;
+  font-size: 14px;
+  color: #333;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
   box-sizing: border-box;
+  display: block;
 }

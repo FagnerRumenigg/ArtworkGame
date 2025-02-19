@@ -11,6 +11,13 @@
   overflow: hidden; /* Mantém a imagem dentro do círculo */
 }
 
+.timeline-slot.active {
+  border: 2px solid #4fc3f7;  /* Azul Claro para indicar a área ativa */
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.7);  /* Sombra suave para dar mais destaque */
+}
+
+
+
 /* Ajuste para garantir que a imagem preencha corretamente */
 .timeline-artwork {
   width: 100%;
