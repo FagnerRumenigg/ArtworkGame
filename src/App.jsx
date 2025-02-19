@@ -12,10 +12,16 @@ function App() {
     setSelectedTheme(theme);
   };
 
+  const resetAppState = () => {
+    setPlayers(null);
+    setSelectedTheme("");
+  };
+  
+
   return (
     <div>
       {players ? (
-        <Game players={players} selectedTheme={selectedTheme} />
+        <Game players={players} selectedTheme={selectedTheme} onRestartGame={resetAppState} />
       ) : (
         <HomeScreen onStartGame={handleStartGame} />
       )}
