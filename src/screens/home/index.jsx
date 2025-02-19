@@ -1,10 +1,12 @@
-// screens/home/index.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
+import getThemes from "../../data/index.jsx";
 
 function HomeScreen({ onStartGame }) {
   const [playerName, setPlayerName] = useState("");
   const [players, setPlayers] = useState([]);
+  const [selectedTheme, setSelectedTheme] = useState(""); // Nenhum tema por padrão
+  const themes = getThemes();
 
   const handleAddPlayer = () => {
     const trimmedName = playerName.trim();
@@ -21,14 +23,28 @@ function HomeScreen({ onStartGame }) {
   };
 
   const handleStartGame = () => {
-    if (players.length > 0) {
-      onStartGame(players);
+    if (players.length === 0) return;
+
+    if (!selectedTheme) {
+      const confirmStart = window.confirm(
+        "Você não escolheu um tema. Deseja continuar? Um tema será selecionado aleatoriamente."
+      );
+      if (!confirmStart) return;
+
+      const randomTheme = themes[Math.floor(Math.random() * themes.length)].id;
+      setSelectedTheme(randomTheme);
     }
+
+    onStartGame(players, selectedTheme || themes[Math.floor(Math.random() * themes.length)].id);
   };
+
+  // Monitorando mudanças no selectedTheme
+  useEffect(() => {
+  }, [selectedTheme]); // Este useEffect será chamado sempre que selectedTheme mudar
 
   return (
     <div className="home-screen">
-      <h1>Bem-vindo ao Jogo!</h1>
+      <h1>Bem-vindo ao <span className="highlight">Timeline Shuffle!</span></h1>
       <div className="player-input">
         <input
           type="text"
@@ -37,8 +53,9 @@ function HomeScreen({ onStartGame }) {
           onChange={(e) => setPlayerName(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button onClick={handleAddPlayer}>Adicionar Jogador</button>
+        <button className="add-button" onClick={handleAddPlayer}>Adicionar Jogador</button>
       </div>
+
       <div className="player-list">
         <h2>Jogadores Adicionados:</h2>
         {players.length === 0 ? (
@@ -51,7 +68,30 @@ function HomeScreen({ onStartGame }) {
           </ul>
         )}
       </div>
-      <button onClick={handleStartGame} disabled={players.length === 0}>
+
+      <div className="theme-selection">
+        <label htmlFor="theme">Escolha um tema:</label>
+        <select
+          id="theme"
+          value={selectedTheme}
+          onChange={(e) => {
+            setSelectedTheme(e.target.value);
+          }}
+        >
+          <option value="">Temas</option>
+          {themes.map((theme) => (
+            <option key={theme.id} value={theme.id}>
+              {theme.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <button
+        className="start-button"
+        onClick={handleStartGame}
+        disabled={players.length === 0}
+      >
         Iniciar Jogo
       </button>
     </div>

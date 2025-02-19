@@ -1,13 +1,12 @@
-// screens/game/index.jsx
 import React, { useState, useEffect, useCallback } from "react";
 import { DndContext, closestCorners } from "@dnd-kit/core";
 import DraggableArtwork from "./dragSlot/index.jsx";
 import DroppableSlot from "./dropSlot/index.jsx";
-import getArtworksData from "../../data/artworksData";
+import getThemes from "../../data/index"; // Importa os temas
 import Scoreboard from "./scoreboard/index.jsx";
 import "./styles.css";
 
-function Game({ players }) {
+function Game({ players, selectedTheme }) {
   function getRandomColor() {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return '#' + randomColor.padStart(6, '0');
@@ -26,13 +25,21 @@ function Game({ players }) {
   const [winners, setWinners] = useState([]);
 
   const initializeGame = useCallback(() => {
-    const artworksData = getArtworksData();
-
-    // Ordena a régua corretamente (por ID, para manter a sequência esperada)
+    const themes = getThemes();
+    const selectedThemeData = themes.find((theme) => theme.name=== selectedTheme);
+    
+    if (!selectedThemeData) {
+      console.error("Tema inválido selecionado", selectedTheme);
+      return;
+    }
+  
+    const artworksData = selectedThemeData.data || [];
+  
+    // Ordena a régua corretamente (por ID)
     const orderedArtworks = [...artworksData].sort((a, b) => a.id - b.id);
     setSortedArtworks(orderedArtworks);
     
-    // Embaralha as obras que ficarão disponíveis para arrastar
+    // Embaralha as obras para a área de arrasto
     const shuffledArtworks = [...artworksData].sort(() => Math.random() - 0.5);
     setArtworks(shuffledArtworks);
     
@@ -42,8 +49,7 @@ function Game({ players }) {
     setWinners([]);
     setCurrentPlayer(0);
     setScoreboard(initializeScoreboard());
-  }, [initializeScoreboard]);
-  
+  }, [selectedTheme, initializeScoreboard]);
 
   useEffect(() => {
     initializeGame();
@@ -71,30 +77,24 @@ function Game({ players }) {
     const artworkId = parseInt(active.id, 10);
     const artwork = artworks.find((art) => art.id === artworkId);
     const timelineSlotIndex = parseInt(over.id.replace("slot-", ""), 10);
-    const expectedArtwork = sortedArtworks[timelineSlotIndex]; // Certo agora!
-  
+    const expectedArtwork = sortedArtworks[timelineSlotIndex]; 
+
     if (artwork.id === expectedArtwork.id) { 
-      // Atualiza a régua
       const newTimeline = [...timeline];
       newTimeline[timelineSlotIndex] = { ...artwork, correct: true };
       setTimeline(newTimeline);
   
-      // Remove a arte da área de arrasto
       setArtworks(artworks.filter((art) => art.id !== artworkId));
   
-      // Atualiza a pontuação do jogador atual
       setScoreboard((prevScoreboard) =>
         prevScoreboard.map((player, index) =>
           index === currentPlayer ? { ...player, points: player.points + 100 } : player
         )
       );
     } else {
-      // Passa a vez para o próximo jogador
       setCurrentPlayer((prev) => (prev + 1) % scoreboard.length);
     }
   };
-  
-  
 
   const resetGame = () => {
     initializeGame();
@@ -131,7 +131,7 @@ function Game({ players }) {
         </div>
       ) : (
         <>
-          <h1>Organize as Obras de Arte</h1>
+          <h1>Organize os Eventos na Ordem Certa</h1>
           <p>
             <strong>É a vez de: </strong>
             <span style={{ color: scoreboard[currentPlayer].color }}>

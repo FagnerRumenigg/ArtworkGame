@@ -1,22 +1,21 @@
-// App.jsx
 import React, { useState } from "react";
 import "./App.css";
 import Game from "./screens/game/index";
-import HomeScreen from "./screens/home/index"; // certifique-se de que o caminho está correto
+import HomeScreen from "./screens/home/index"; // Certifique-se de que o caminho está correto
 
 function App() {
-  // Se players for null ou [] significa que ainda estamos na HomeScreen.
-  // Ao iniciar o jogo, players será uma lista com pelo menos um jogador.
   const [players, setPlayers] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState("art"); // Tema padrão
 
-  const handleStartGame = (playersList) => {
+  const handleStartGame = (playersList, theme) => {
     setPlayers(playersList);
+    setSelectedTheme(theme);
   };
 
   return (
     <div>
       {players ? (
-        <Game players={players} />
+        <Game players={players} selectedTheme={selectedTheme} />
       ) : (
         <HomeScreen onStartGame={handleStartGame} />
       )}

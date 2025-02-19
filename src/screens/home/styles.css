@@ -1,104 +1,140 @@
-/* =========================
-   HomeScreen
-   ========================= */
-   .home-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Ocupa toda a altura da tela */
-    background-color: #f9f9f9;
-    padding: 20px;
-  }
-  
-  .home-screen h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Área de input para adicionar jogador */
+/* Estilos gerais */
+.home-screen {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #007bff; /* Azul padrão */
+}
+
+.highlight {
+  color: #0056b3; /* Azul mais escuro para destaque */
+}
+
+.player-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+/* Botão Adicionar Jogador */
+.add-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease-in-out;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de jogadores */
+.player-list {
+  margin: 20px 0;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: left;
+}
+
+.player-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.player-list li {
+  font-size: 18px;
+  padding: 5px;
+  color: #333;
+}
+
+/* Seleção de temas */
+.theme-selection {
+  margin-top: 20px;
+}
+
+.theme-selection label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+select:focus {
+  border-color: #007bff;
+}
+
+/* Botão de iniciar jogo */
+.start-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.start-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.start-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
   .player-input {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  input {
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
   }
-  
-  .player-input input {
-    flex: 1;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .player-input button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #388e3c;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .player-input button:hover {
-    background-color: #2e7d32;
-  }
-  
-  /* Lista de jogadores adicionados */
+
   .player-list {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
+    width: 90%;
   }
-  
-  .player-list h2 {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .player-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .player-list li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 5px;
-    text-align: center;
-  }
-  
-  /* Botão para iniciar o jogo */
-  .home-screen button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #1976d2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .home-screen button:hover {
-    background-color: #1565c0;
-  }
-  
-  /* Estilo para botão desabilitado */
-  button[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+}
+
+
