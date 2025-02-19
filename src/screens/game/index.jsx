@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { DndContext, closestCorners } from "@dnd-kit/core";
+import { DndContext, closestCorners, MouseSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import DraggableArtwork from "./dragSlot/index.jsx";
 import DroppableSlot from "./dropSlot/index.jsx";
 import getThemes from "../../data/index"; // Importa os temas
@@ -26,7 +26,7 @@ function Game({ players, selectedTheme, onRestartGame }) {
 
   const initializeGame = useCallback(() => {
     const themes = getThemes();
-    const selectedThemeData = themes.find((theme) => theme.name === selectedTheme);
+    const selectedThemeData = themes.find((theme) => theme.key === selectedTheme);
 
     if (!selectedThemeData) {
       console.error("Tema inválido selecionado", selectedTheme);
@@ -107,6 +107,11 @@ function Game({ players, selectedTheme, onRestartGame }) {
     }
   };
 
+  // Usando sensores de mouse e toque
+  const mouseSensor = useSensor(MouseSensor);
+  const touchSensor = useSensor(TouchSensor);
+  const sensors = useSensors(mouseSensor, touchSensor);
+
   return (
     <div className="game-container">
       <Scoreboard players={scoreboard} currentPlayer={currentPlayer} />
@@ -149,7 +154,12 @@ function Game({ players, selectedTheme, onRestartGame }) {
             </span>
           </p>
 
-          <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+          {/* Logs de Activators para depuração */}
+          <DndContext
+            collisionDetection={closestCorners}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+          >
             <div className="game-layout">
               <div className="artwork-column left">
                 {artworks.slice(0, Math.ceil(artworks.length / 2)).map((art) => (

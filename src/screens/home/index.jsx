@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import getThemes from "../../data/index.jsx";
 
@@ -31,16 +31,12 @@ function HomeScreen({ onStartGame }) {
       );
       if (!confirmStart) return;
 
-      const randomTheme = themes[Math.floor(Math.random() * themes.length)].id;
+      const randomTheme = themes[Math.floor(Math.random() * themes.length)].key;
       setSelectedTheme(randomTheme);
     }
 
-    onStartGame(players, selectedTheme || themes[Math.floor(Math.random() * themes.length)].id);
+    onStartGame(players, selectedTheme || themes[Math.floor(Math.random() * themes.length)].key);
   };
-
-  // Monitorando mudanças no selectedTheme
-  useEffect(() => {
-  }, [selectedTheme]); // Este useEffect será chamado sempre que selectedTheme mudar
 
   return (
     <div className="home-screen">
@@ -74,13 +70,11 @@ function HomeScreen({ onStartGame }) {
         <select
           id="theme"
           value={selectedTheme}
-          onChange={(e) => {
-            setSelectedTheme(e.target.value);
-          }}
+          onChange={(e) => setSelectedTheme(e.target.value)}
         >
           <option value="">Temas</option>
           {themes.map((theme) => (
-            <option key={theme.id} value={theme.id}>
+            <option key={theme.key} value={theme.key}>
               {theme.name}
             </option>
           ))}
