@@ -1,6 +1,6 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
-import "./styles.css";
+import "./styles.css"; // Certifique-se de que está apontando para o CSS correto
 
 function DroppableSlot({ index, timeline }) {
   const { setNodeRef } = useDroppable({ id: `slot-${index}` });
@@ -13,11 +13,7 @@ function DroppableSlot({ index, timeline }) {
       className={`timeline-slot ${slotArtwork ? "correct" : ""}`}
     >
       {slotArtwork && (
-        <img
-          src={slotArtwork.image}
-          alt={slotArtwork.title}
-          className="timeline-artwork"
-        />
+        <img src={slotArtwork.image} alt="" className="timeline-artwork" />
       )}
     </div>
   );

@@ -42,10 +42,6 @@
     margin: 20px auto;
   }
 
-  .timeline-slot.correct {
-    border-color: green;
-  }
-
   .winner-modal {
     position: fixed;
     top: 50%;

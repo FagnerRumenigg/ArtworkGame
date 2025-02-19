@@ -73,19 +73,22 @@ function Game({ players, selectedTheme, onRestartGame }) {
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over) return;
-
+  
     const artworkId = parseInt(active.id, 10);
     const artwork = artworks.find((art) => art.id === artworkId);
     const timelineSlotIndex = parseInt(over.id.replace("slot-", ""), 10);
     const expectedArtwork = sortedArtworks[timelineSlotIndex];
-
+  
     if (artwork.id === expectedArtwork.id) {
       const newTimeline = [...timeline];
-      newTimeline[timelineSlotIndex] = { ...artwork, correct: true };
+      newTimeline[timelineSlotIndex] = {
+        image: artwork.image,
+        description: artwork.description, // Mantém apenas descrição
+        correct: true,
+      };
       setTimeline(newTimeline);
-
       setArtworks(artworks.filter((art) => art.id !== artworkId));
-
+  
       setScoreboard((prevScoreboard) =>
         prevScoreboard.map((player, index) =>
           index === currentPlayer ? { ...player, points: player.points + 100 } : player
@@ -95,6 +98,8 @@ function Game({ players, selectedTheme, onRestartGame }) {
       setCurrentPlayer((prev) => (prev + 1) % scoreboard.length);
     }
   };
+  
+  
 
   // Função de reinício do jogo
   const resetGame = () => {
