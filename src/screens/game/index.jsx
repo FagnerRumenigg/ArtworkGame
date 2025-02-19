@@ -119,12 +119,14 @@ function Game({ players, selectedTheme, onRestartGame }) {
 
   return (
     <div className="game-container">
-      <Scoreboard players={scoreboard} currentPlayer={currentPlayer} />
-
-      <button onClick={resetGame} className="back-button">
-        Reiniciar Jogo
-      </button> {/* Coloquei o botão aqui, fora do bloco gameOver */}
-
+      <header className="game-header">
+        <button onClick={resetGame} className="back-button">
+          Reiniciar Jogo
+        </button>
+        <h1 className="game-title">Organize os Eventos na Ordem Certa</h1>
+        <Scoreboard players={scoreboard} currentPlayer={currentPlayer} />
+      </header>
+  
       {gameOver ? (
         <div className="winner-modal">
           <h2>🎉 Fim de jogo! 🎉</h2>
@@ -151,15 +153,13 @@ function Game({ players, selectedTheme, onRestartGame }) {
         </div>
       ) : (
         <>
-          <h1>Organize os Eventos na Ordem Certa</h1>
           <p>
             <strong>É a vez de: </strong>
             <span style={{ color: scoreboard[currentPlayer].color }}>
               {scoreboard[currentPlayer].name}
             </span>
           </p>
-
-          {/* Logs de Activators para depuração */}
+  
           <DndContext
             collisionDetection={closestCorners}
             onDragEnd={handleDragEnd}
@@ -187,6 +187,6 @@ function Game({ players, selectedTheme, onRestartGame }) {
       )}
     </div>
   );
-}
+}  
 
 export default Game;
