@@ -30,9 +30,9 @@ body {
   text-overflow: ellipsis;
   text-align: center;
   flex-grow: 1;
-  flex-shrink: 1; /* Adicionado para controlar o encolhimento */
+  flex-shrink: 1;
   margin-right: 10px;
-  min-width: 150px; /* Garantindo que o título tenha uma largura mínima */
+  min-width: 150px;
 }
 
 
@@ -50,7 +50,6 @@ body {
   background-color: #003f7f;
 }
 
-/* Layout principal */
 .game-layout {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -61,7 +60,6 @@ body {
   margin: 0 auto;
 }
 
-/* Coluna de obras */
 .artwork-column {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -69,7 +67,6 @@ body {
   justify-items: center;
 }
 
-/* Grade da linha do tempo */
 .timeline-grid {
   display: grid;
   grid-template-columns: repeat(5, 80px);
@@ -78,7 +75,6 @@ body {
   margin: 20px auto;
 }
 
-/* Modal do vencedor */
 .winner-modal button {
   padding: 10px 20px;
   font-size: 1rem;
@@ -89,16 +85,16 @@ body {
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s;
-  width: auto; /* Impede que o botão ocupe toda a largura */
-  max-width: 250px; /* Tamanho máximo do botão */
+  width: auto;
+  max-width: 250px;
   margin-left: auto;
-  margin-right: auto; /* Centraliza o botão */
+  margin-right: auto;
 }
 
 @media (max-width: 768px) {
   .winner-modal button {
-    width: auto; /* Impede que ele se estique demais */
-    max-width: 200px; /* Tamanho máximo do botão em telas pequenas */
+    width: auto;
+    max-width: 200px;
   }
 }
 
@@ -131,37 +127,27 @@ body {
   font-weight: bold;
 }
 
-/* Ajustes para telas menores */
 @media (max-width: 768px) {
-  /* Ajustes no header para telas menores */
   .game-header {
-    flex-direction: column;  /* Alinha os itens em coluna */
-    align-items: center;  /* Centraliza os itens */
+    flex-direction: column;
+    align-items: center;
   }
 
   .game-title {
-    font-size: 20px; /* Ajusta o tamanho da fonte para telas menores */
-    margin-bottom: 10px; /* Dá um espaçamento entre o título e o botão */
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 
-  .back-button {
-    width: 100%;  /* Faz o botão ocupar toda a largura disponível */
-    margin-top: 10px;  /* Dá um espaçamento acima do botão */
-  }
-
-  /* Ajustes para o layout em celular */
   .game-layout {
-    grid-template-columns: 1fr;  /* Em telas pequenas, exibe uma coluna única */
-    gap: 15px;  /* Diminui o espaço entre os itens */
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 
-  /* Ajuste nas colunas de arte */
   .artwork-column {
-    grid-template-columns: 1fr 1fr;  /* Ajusta para 2 colunas */
+    grid-template-columns: 1fr 1fr;
   }
 
-  /* Ajuste para a timeline */
   .timeline-grid {
-    grid-template-columns: repeat(3, 1fr);  /* Ajusta para 3 itens por linha */
+    grid-template-columns: repeat(3, 1fr);
   }
 }

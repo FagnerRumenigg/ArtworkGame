@@ -7,16 +7,14 @@ function DroppableSlot({ index, timeline }) {
   const slotRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
 
-  // Atualiza o estado do isActive conforme a posição do item arrastado
   useEffect(() => {
     setIsActive(isOver);
   }, [isOver]);
 
-  // Definir a área de acerto corretamente
   useEffect(() => {
     if (slotRef.current) {
       const rect = slotRef.current.getBoundingClientRect();
-      console.log('Slot bounding rect', rect); // Para debug, veja as dimensões
+      console.log('Slot bounding rect', rect);
     }
   }, [isOver]);
 

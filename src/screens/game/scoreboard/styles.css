@@ -1,10 +1,5 @@
-/* =========================
-   scoreboard.css - Scoreboard
-   ========================= */
-
-/* Container principal do scoreboard */
 .scoreboard {
-  position: relative; /* ou absolute, conforme necessidade */
+  position: relative;
   top: 10px;
   right: 10px;
   background: white;
@@ -12,18 +7,16 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   text-align: left;
-  width: auto; /* ajusta ao conteúdo */
+  width: auto;
   transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
   overflow: hidden;
-  max-height: 150px; /* Altura máxima quando expandido (ajuste conforme necessário) */
+  max-height: 150px;
 }
 
-/* Quando minimizado, define uma altura menor para exibir apenas o header */
 .scoreboard.collapsed {
   max-height: 40px;
 }
 
-/* Header do scoreboard usando Flexbox */
 .scoreboard-header {
   display: flex;
   justify-content: space-between;
@@ -34,7 +27,6 @@
   margin-bottom: 10px;
 }
 
-/* Botão de toggle (seta) */
 .toggle-button {
   background: transparent;
   border: none;
@@ -42,7 +34,6 @@
   cursor: pointer;
 }
 
-/* Lista ou tabela dentro do scoreboard */
 .scoreboard ul {
   list-style: none;
   padding: 0;
@@ -54,36 +45,33 @@
   font-size: 16px;
 }
 
-/* Ajuste para telas pequenas */
 @media (max-width: 768px) {
   .scoreboard {
-    top: 5px; /* Diminuir o espaço superior */
-    right: 5px; /* Diminuir o espaço da direita */
-    padding: 8px; /* Menos padding */
-    max-height: 120px; /* Reduzir a altura máxima */
+    top: 5px;
+    right: 5px;
+    padding: 8px;
+    max-height: 120px;
   }
 
   .scoreboard-header {
-    font-size: 14px; /* Diminuir o tamanho da fonte */
+    font-size: 14px;
   }
 
   .scoreboard li {
-    font-size: 14px; /* Diminuir o tamanho da fonte */
+    font-size: 14px;
   }
 }
 
-/* Ajusta para o caso de colapsar automaticamente em telas pequenas */
 @media (max-width: 480px) {
   .scoreboard {
-    max-height: 40px; /* Colapsar mais ainda */
-    overflow: hidden; /* Certifica que o conteúdo não irá ultrapassar */
+    max-height: 40px;
+    overflow: hidden;
   }
 }
 
-/* Ajustando os espaçamentos e margens dos itens da lista */
 @media (max-width: 768px) {
   .scoreboard li {
-    margin-bottom: 5px; /* Menos espaçamento entre os itens */
-    font-size: 14px; /* Fonte menor */
+    margin-bottom: 5px;
+    font-size: 14px;
   }
 }

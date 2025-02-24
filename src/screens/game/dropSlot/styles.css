@@ -1,60 +1,55 @@
-/* Ajusta a área do slot da régua */
 .timeline-slot {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px; /* Tamanho do círculo */
+  width: 80px;
   height: 80px;
   border: 2px dashed gray;
   border-radius: 50%;
-  overflow: hidden; /* Garante que a imagem fique dentro do círculo */
+  overflow: hidden;
 }
 
-/* Ajuste para telas menores */
+
 @media (max-width: 768px) {
   .timeline-slot {
-    width: 70px; /* Diminuir o tamanho do círculo */
+    width: 70px;
     height: 70px;
   }
 
   .timeline-artwork {
-    width: 90%; /* Aumentar o preenchimento da imagem */
+    width: 90%;
     height: 90%;
   }
 }
 
-/* Efeito ativo para indicar a área ativa */
 .timeline-slot.active {
-  border: 2px solid #4fc3f7;  /* Azul Claro para indicar a área ativa */
-  box-shadow: 0 0 10px rgba(79, 195, 247, 0.7);  /* Sombra suave para dar mais destaque */
+  border: 2px solid #4fc3f7;
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.7);
 }
 
-/* Ajuste para telas pequenas */
 @media (max-width: 480px) {
   .timeline-slot {
-    width: 60px; /* Diminuir mais ainda o tamanho do círculo */
+    width: 60px;
     height: 60px;
   }
 
   .timeline-artwork {
-    width: 80%;  /* Reduzir ainda mais o tamanho da imagem */
+    width: 80%;
     height: 80%;
   }
 }
 
-/* Ajuste para garantir que a imagem preencha o círculo sem quebrar */
 .timeline-artwork {
-  width: 100%;  /* Garantir que a imagem ocupe toda a largura do círculo */
-  height: 100%; /* Garantir que a imagem ocupe toda a altura do círculo */
-  object-fit: cover;  /* Faz a imagem preencher sem distorcer, mantendo a proporção */
-  border-radius: 50%; /* Garantir que a imagem tenha borda arredondada */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-/* Tooltip (descrição da arte) */
 .tooltip {
   position: absolute;
-  bottom: 100%; /* Agora fica acima do círculo */
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.9);
@@ -66,9 +61,8 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   pointer-events: none;
-  visibility: hidden; /* Garante que não seja clicável */
+  visibility: hidden;
 }
-
 
 .correct:hover .tooltip {
   opacity: 1;

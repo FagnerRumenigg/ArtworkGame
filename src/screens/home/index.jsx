@@ -15,7 +15,6 @@ function HomeScreen({ onStartGame }) {
     setPlayerName("");
   };
 
-  // Adiciona o jogador ao pressionar Enter
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleAddPlayer();
