@@ -11,13 +11,6 @@ function DroppableSlot({ index, timeline }) {
     setIsActive(isOver);
   }, [isOver]);
 
-  useEffect(() => {
-    if (slotRef.current) {
-      const rect = slotRef.current.getBoundingClientRect();
-      console.log('Slot bounding rect', rect);
-    }
-  }, [isOver]);
-
   return (
     <div
       ref={(node) => {
