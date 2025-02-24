@@ -1,10 +1,11 @@
 .artwork-card {
-  width: 100px;  /* Ajuste do tamanho do card */
+  width: 100%;  /* Usando 100% para a largura se ajustando ao contêiner pai */
+  max-width: 200px;  /* Define um tamanho máximo para a largura do card */
   margin: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: white;
-  overflow: hidden;  /* Garante que o conteúdo não ultrapasse os limites */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +13,7 @@
 
 .artwork-image-container {
   width: 100%;
-  height: 120px;  /* Define o tamanho fixo da imagem */
+  height: 120px;
   overflow: hidden;
 }
 
@@ -25,7 +26,7 @@
 .artwork-title {
   padding: 10px;
   text-align: center;
-  font-size: 14px;
+  font-size: 14px;  /* Pode ser ajustado dinamicamente */
   color: #333;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -33,4 +34,29 @@
   width: 100%;
   box-sizing: border-box;
   display: block;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .artwork-card {
+    width: 100%;
+    max-width: 150px;  /* Diminuir o máximo do tamanho do card para telas menores */
+    margin: 5px;
+  }
+
+  .artwork-title {
+    font-size: 12px;  /* Reduz o tamanho da fonte para telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .artwork-card {
+    width: 100%;
+    max-width: 120px;  /* Reduz ainda mais em telas muito pequenas */
+  }
+
+  .artwork-title {
+    font-size: 10px;  /* Fontes ainda menores em telas muito pequenas */
+    padding: 8px;
+  }
 }

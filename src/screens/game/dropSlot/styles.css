@@ -4,26 +4,51 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px; /* Mantém o tamanho do círculo */
+  width: 80px; /* Tamanho do círculo */
   height: 80px;
   border: 2px dashed gray;
   border-radius: 50%;
-  overflow: hidden; /* Mantém a imagem dentro do círculo */
+  overflow: hidden; /* Garante que a imagem fique dentro do círculo */
 }
 
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .timeline-slot {
+    width: 70px; /* Diminuir o tamanho do círculo */
+    height: 70px;
+  }
+
+  .timeline-artwork {
+    width: 90%; /* Aumentar o preenchimento da imagem */
+    height: 90%;
+  }
+}
+
+/* Efeito ativo para indicar a área ativa */
 .timeline-slot.active {
   border: 2px solid #4fc3f7;  /* Azul Claro para indicar a área ativa */
   box-shadow: 0 0 10px rgba(79, 195, 247, 0.7);  /* Sombra suave para dar mais destaque */
 }
 
+/* Ajuste para telas pequenas */
+@media (max-width: 480px) {
+  .timeline-slot {
+    width: 60px; /* Diminuir mais ainda o tamanho do círculo */
+    height: 60px;
+  }
 
+  .timeline-artwork {
+    width: 80%;  /* Reduzir ainda mais o tamanho da imagem */
+    height: 80%;
+  }
+}
 
-/* Ajuste para garantir que a imagem preencha corretamente */
+/* Ajuste para garantir que a imagem preencha o círculo sem quebrar */
 .timeline-artwork {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Faz com que a imagem preencha sem distorcer */
-  border-radius: 50%;
+  width: 100%;  /* Garantir que a imagem ocupe toda a largura do círculo */
+  height: 100%; /* Garantir que a imagem ocupe toda a altura do círculo */
+  object-fit: cover;  /* Faz a imagem preencher sem distorcer, mantendo a proporção */
+  border-radius: 50%; /* Garantir que a imagem tenha borda arredondada */
 }
 
 /* Tooltip (descrição da arte) */
@@ -44,8 +69,15 @@
   visibility: hidden; /* Garante que não seja clicável */
 }
 
-/* Mostra a descrição quando passa o mouse */
+
 .correct:hover .tooltip {
   opacity: 1;
   visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .tooltip {
+    font-size: 10px;
+    padding: 4px 6px; 
+  }
 }

@@ -4,7 +4,7 @@
 
 /* Container principal do scoreboard */
 .scoreboard {
-  position: fixed; /* ou absolute, conforme necessidade */
+  position: relative; /* ou absolute, conforme necessidade */
   top: 10px;
   right: 10px;
   background: white;
@@ -52,4 +52,38 @@
 .scoreboard li {
   font-weight: bold;
   font-size: 16px;
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 768px) {
+  .scoreboard {
+    top: 5px; /* Diminuir o espaço superior */
+    right: 5px; /* Diminuir o espaço da direita */
+    padding: 8px; /* Menos padding */
+    max-height: 120px; /* Reduzir a altura máxima */
+  }
+
+  .scoreboard-header {
+    font-size: 14px; /* Diminuir o tamanho da fonte */
+  }
+
+  .scoreboard li {
+    font-size: 14px; /* Diminuir o tamanho da fonte */
+  }
+}
+
+/* Ajusta para o caso de colapsar automaticamente em telas pequenas */
+@media (max-width: 480px) {
+  .scoreboard {
+    max-height: 40px; /* Colapsar mais ainda */
+    overflow: hidden; /* Certifica que o conteúdo não irá ultrapassar */
+  }
+}
+
+/* Ajustando os espaçamentos e margens dos itens da lista */
+@media (max-width: 768px) {
+  .scoreboard li {
+    margin-bottom: 5px; /* Menos espaçamento entre os itens */
+    font-size: 14px; /* Fonte menor */
+  }
 }
